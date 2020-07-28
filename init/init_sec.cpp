@@ -48,8 +48,29 @@
 using namespace std;
 using namespace android;
 
+using ReadFileToString;
+using Trim;
+
 namespace android {
 namespace init {
+
+void set_sim_info()
+{
+	const char *simslot_count_path = "/proc/simslot_count";
+	std::string simslot_count;
+	
+	if (ReadFileToString(simslot_count_path, &simslot_count)) {
+		simslot_count = Trim(simslot_count); // strip newline
+		property_override("ro.multisim.simslotcount", simslot_count.c_str());
+		if (simslot_count.compare("2") == 0) {
+			property_override("rild.libpath2", "/system/vendor/lib64/libsec-ril-dsds.so");
+			property_override("persist.radio.multisim.config", "dsds");
+		}
+	}
+	else {
+		LOG(ERROR) << "Could not open '" << simslot_count_path << "'\n";
+	}
+}
 
 void vendor_load_properties()
 {    
@@ -469,6 +490,8 @@ void vendor_load_properties()
     property_override("ro.fmp_config", "1");
     property_override("ro.boot.fmp_config", "1");
     property_override("sys.oem_unlock_allowed", "0");
+
+    set_sim_info();
 }
 
 }
