@@ -168,8 +168,6 @@ void vendor_load_properties()
     }
     
     string model, device, product;
-    bool dualsim;
-
     switch (variant) {
 
         /*
@@ -370,16 +368,14 @@ void vendor_load_properties()
             /* nobleltezt */	
             model = "SM-N9208";	
             device = "nobleltezt";	
-            product = "noblelte";
-            dualsim = true;
+            product = "noblelte";	
             break;	
 
         case N920C:	
             /* nobleltejv */	
             model = "SM-N920C";	
             device = "nobleltejv";	
-            product = "noblelte";
-            dualsim = true;
+            product = "noblelte";	
             break;	
 
         case N920G:	
@@ -473,11 +469,6 @@ void vendor_load_properties()
     property_override("ro.fmp_config", "1");
     property_override("ro.boot.fmp_config", "1");
     property_override("sys.oem_unlock_allowed", "0");
-
-    // set model-specific properties
-    if (dualsim == true) {
-        property_override("ro.multisim.simslotcount", "2");
-    }
 }
 
 }
