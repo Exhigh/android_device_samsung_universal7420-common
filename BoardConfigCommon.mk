@@ -172,12 +172,6 @@ JAVA_SOURCE_OVERLAYS := \
     org.lineageos.hardware|device/samsung/universal7420-common/lineagehw|**/*.java
 
 #
-# Init
-#
-TARGET_INIT_VENDOR_LIB := libinit_sec
-TARGET_UNIFIED_DEVICE := true
-
-#
 # Kernel
 #
 TARGET_KERNEL_ARCH := arm64
