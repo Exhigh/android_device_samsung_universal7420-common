@@ -418,8 +418,7 @@
 
     <!-- Whether device supports button backlight -->
     <bool name="config_button_brightness_support">true</bool>
-</resources>
-
+    
     <!-- System info -->
     <string name="config_sysCPUTemp">/sys/class/thermal/thermal_zone0/temp</string>
     <string name="config_sysBatteryTemp">/sys/class/power_supply/battery/temp</string>
@@ -427,7 +426,6 @@
     <string name="config_sysGPULoad">/sys/kernel/gpu/gpu_busy</string>
     <integer name="config_sysCPUTempMultiplier">1000</integer>
     <integer name="config_sysBatteryTempMultiplier">10</integer>
-
 
     <!-- Smart charging -->
     <bool name="config_smartChargingAvailable">false</bool>
@@ -437,3 +435,5 @@
 
     <!-- Whether to artificially interpret all signal strengths as one bar higher than they actually are -->
     <bool name="config_inflateSignalStrength">true</bool>
+
+</resources>
