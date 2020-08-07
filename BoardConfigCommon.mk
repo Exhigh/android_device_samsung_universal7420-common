@@ -368,5 +368,8 @@ BOARD_USES_FIMGAPI_V5X := true
 BOARD_USES_DEFAULT_CSC_HW_SCALER := true
 BOARD_USES_SCALER_M2M1SHOT := true
 
+TARGET_GAPPS_OVERRIDE += \
+    AudioFX
+
 # inherit from the proprietary version
 -include vendor/samsung/universal7420-common/BoardConfigVendor.mk
