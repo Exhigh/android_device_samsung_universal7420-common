@@ -436,4 +436,7 @@
     <!-- Whether to artificially interpret all signal strengths as one bar higher than they actually are -->
     <bool name="config_inflateSignalStrength">true</bool>
 
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_enableSmartPixels">true</bool>
+
 </resources>
