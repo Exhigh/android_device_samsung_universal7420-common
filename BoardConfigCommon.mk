@@ -170,6 +170,12 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
 JAVA_SOURCE_OVERLAYS := \
     org.lineageos.hardware|hardware/samsung/lineagehw|**/*.java \
     org.lineageos.hardware|device/samsung/universal7420-common/lineagehw|**/*.java
+    
+#
+# Init
+#
+TARGET_INIT_VENDOR_LIB := libinit_sec
+TARGET_UNIFIED_DEVICE := true
 
 #
 # Kernel
