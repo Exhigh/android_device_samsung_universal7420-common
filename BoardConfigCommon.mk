@@ -370,6 +370,9 @@ BOARD_USES_SCALER_M2M1SHOT := true
 
 TARGET_GAPPS_OVERRIDE += \
     AudioFX
+    
+# inherit target conditionals
+-include device/samsung/universal7420-common/target.mk
 
 # inherit from the proprietary version
 -include vendor/samsung/universal7420-common/BoardConfigVendor.mk
