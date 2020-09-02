@@ -421,4 +421,7 @@
 
     <!-- Whether device supports button backlight -->
     <bool name="config_button_brightness_support">true</bool>
+	
+	<!-- Disable rounded corners on windows to improve graphics performance -->
+    <bool name="config_supportsRoundedCornersOnWindows">false</bool>
 </resources>
