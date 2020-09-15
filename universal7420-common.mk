@@ -374,8 +374,8 @@ PRODUCT_PACKAGES += \
 	android.hardware.renderscript@1.0-impl
 
 # SamsungDoze
-#PRODUCT_PACKAGES += \
-#    SamsungDoze
+PRODUCT_PACKAGES += \
+	SamsungDoze
 
 #
 # Security
@@ -481,3 +481,7 @@ $(call inherit-product-if-exists, vendor/samsung/universal7420-common/universal7
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi/exynos7420/exynos7420.mk)
+
+# TextClassifier smart selection model files
+PRODUCT_PACKAGES += \
+    textclassifier.smartselection.bundle1
