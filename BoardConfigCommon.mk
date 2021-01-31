@@ -174,7 +174,7 @@ JAVA_SOURCE_OVERLAYS := \
 #
 # Init
 #
-TARGET_INIT_VENDOR_LIB := libinit_sec
+TARGET_INIT_VENDOR_LIB := //$(LOCAL_PATH):libinit_sec
 TARGET_UNIFIED_DEVICE := true
 
 #
@@ -198,7 +198,7 @@ TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 #
 # Manifest
 #
-DEVICE_MANIFEST_FILE += device/samsung/universal7420-common/configs/manifest.xml
+DEVICE_MANIFEST_FILE += device/samsung/universal7420-common/manifest.xml
 
 #
 # Networking
@@ -282,6 +282,11 @@ BOARD_SECCOMP_POLICY += device/samsung/universal7420-common/seccomp
 # Sensors
 #
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
+
+#
+# Soong namespaces
+#
+PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 
 #
 # TWRP
@@ -374,8 +379,9 @@ BOARD_USES_FIMGAPI_V5X := true
 BOARD_USES_DEFAULT_CSC_HW_SCALER := true
 BOARD_USES_SCALER_M2M1SHOT := true
 
+#Remove packages
+TARGET_GAPPS_OVERRIDE += \
+    AudioFX
+
 # inherit target conditionals
 -include device/samsung/universal7420-common/target.mk
-
-# inherit from the proprietary version
--include vendor/samsung/universal7420-common/BoardConfigVendor.mk

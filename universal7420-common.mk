@@ -38,7 +38,6 @@ PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/audio/audio_effects.xml:system/vendor/etc/audio_effects.xml \
 	$(LOCAL_PATH)/configs/audio/audio_policy.conf:system/vendor/etc/audio_policy.conf \
-	$(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/mixer_paths_0.xml \
 	frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
 	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
 	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
@@ -184,12 +183,6 @@ PRODUCT_PACKAGES += \
     libhwc2on1adapter
 
 #
-# Init
-#
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/init/zero.wifi.rc:system/vendor/etc/init/zero.wifi.rc
-
-#
 # IR
 #
 PRODUCT_PACKAGES += \
@@ -219,15 +212,15 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/keylayout/sec_touchscreen.kl:system/vendor/usr/keylayout/sec_touchscreen.kl \
 	$(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:system/vendor/usr/idc/Synaptics_HID_TouchPad.idc \
 	$(LOCAL_PATH)/configs/idc/ft5x06_ts.idc:system/vendor/usr/idc/ft5x06_ts.idc \
-	$(LOCAL_PATH)/configs/idc/sec_touchscreen.idc:system/vendor/usr/idc/sec_touchscreen.idc
+	$(LOCAL_PATH)/configs/idc/sec_touchscreen.idc:system/vendor/usr/idc/sec_touchscreen.idc \
+	$(LOCAL_PATH)/configs/idc/sec_e-pen.idc:system/vendor/usr/idc/sec_e-pen.idc
 
 #
 # Keymaster
 #
 PRODUCT_PACKAGES += \
-	keystore.exynos5 \
-	android.hardware.keymaster@3.0-impl \
-	android.hardware.keymaster@3.0-service
+	android.hardware.keymaster@4.0-impl \
+	android.hardware.keymaster@4.0-service
 
 #
 # Keymaster configuration
@@ -315,6 +308,10 @@ PRODUCT_PACKAGES += \
 	Jelly \
 	SamsungServiceMode
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 #
 # Permissions
 #
@@ -365,6 +362,7 @@ PRODUCT_PACKAGES += \
 	init.samsungexynos7420.usb.rc \
         init.sensors.rc \
 	init.recovery.samsungexynos7420.rc \
+	init.wifi.rc \
 	ueventd.samsungexynos7420.rc
 
 #
@@ -372,6 +370,12 @@ PRODUCT_PACKAGES += \
 #
 PRODUCT_PACKAGES += \
 	android.hardware.renderscript@1.0-impl
+	
+#
+# CustomDoze
+#
+PRODUCT_PACKAGES += \
+	CustomDoze
 
 # SamsungDoze
 #PRODUCT_PACKAGES += \
@@ -460,7 +464,6 @@ PRODUCT_PACKAGES += \
 #
 ## Configs
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/vendor/etc/wifi/wpa_supplicant_overlay.conf \
 	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/vendor/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/configs/wifi/filter_ie:system/etc/wifi/filter_ie
 
@@ -471,12 +474,11 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wlutil \
     libwpa_client \
+    libnetcmdiface \
+    macloader \
     wpa_supplicant \
     wpa_supplicant.conf \
     android.hardware.wifi@1.0-service.legacy
-
-# Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/universal7420-common/universal7420-common-vendor.mk)
 
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi/exynos5/exynos5.mk)
